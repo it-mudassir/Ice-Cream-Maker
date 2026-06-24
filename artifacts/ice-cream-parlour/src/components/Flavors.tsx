@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, Check } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
+import FlavorIcon from "./FlavorIcon";
 
 const flavors = [
-  { id: "1", name: "Strawberry Dream", emoji: "🍓", price: 4.5, category: "fruity", color: "from-pink-100 to-pink-200", desc: "Fresh strawberries, cream, vanilla" },
-  { id: "2", name: "Mint Chip Bliss", emoji: "🌿", price: 4.5, category: "classic", color: "from-green-100 to-emerald-200", desc: "Peppermint, dark chocolate chips" },
-  { id: "3", name: "Mango Tango", emoji: "🥭", price: 5.0, category: "fruity", color: "from-yellow-100 to-amber-200", desc: "Alphonso mango, passion fruit" },
-  { id: "4", name: "Lavender Honey", emoji: "💜", price: 5.5, category: "floral", color: "from-purple-100 to-violet-200", desc: "Dried lavender, wildflower honey" },
-  { id: "5", name: "Cookie Monster", emoji: "🍪", price: 5.0, category: "classic", color: "from-blue-100 to-indigo-200", desc: "Cookies & cream, blueberry swirl" },
-  { id: "6", name: "Salted Caramel", emoji: "🧂", price: 5.0, category: "classic", color: "from-amber-100 to-orange-200", desc: "Sea salt, housemade caramel" },
-  { id: "7", name: "Pistachio Rose", emoji: "🌹", price: 6.0, category: "floral", color: "from-green-100 to-rose-100", desc: "Sicilian pistachios, rosewater" },
-  { id: "8", name: "Black Sesame", emoji: "🖤", price: 5.5, category: "unique", color: "from-gray-100 to-gray-200", desc: "Toasted black sesame, brown sugar" },
-  { id: "9", name: "Matcha Ceremony", emoji: "🍵", price: 5.5, category: "unique", color: "from-green-100 to-lime-200", desc: "Ceremonial matcha, sweet cream" },
-  { id: "10", name: "Blueberry Cheesecake", emoji: "🫐", price: 5.0, category: "fruity", color: "from-blue-100 to-purple-200", desc: "Wild blueberries, cream cheese" },
-  { id: "11", name: "Bourbon Pecan", emoji: "🥃", price: 6.0, category: "unique", color: "from-orange-100 to-amber-200", desc: "Bourbon, candied pecans, maple" },
-  { id: "12", name: "Lychee Sorbet", emoji: "🌸", price: 4.0, category: "fruity", color: "from-pink-100 to-rose-200", desc: "Fresh lychee, lime zest — dairy free" },
+  { id: "1", name: "Strawberry Dream", price: 4.5, category: "fruity", color: "from-pink-100 to-pink-200", desc: "Fresh strawberries, cream, vanilla" },
+  { id: "2", name: "Mint Chip Bliss", price: 4.5, category: "classic", color: "from-green-100 to-emerald-200", desc: "Peppermint, dark chocolate chips" },
+  { id: "3", name: "Mango Tango", price: 5.0, category: "fruity", color: "from-yellow-100 to-amber-200", desc: "Alphonso mango, passion fruit" },
+  { id: "4", name: "Lavender Honey", price: 5.5, category: "floral", color: "from-purple-100 to-violet-200", desc: "Dried lavender, wildflower honey" },
+  { id: "5", name: "Cookie Monster", price: 5.0, category: "classic", color: "from-blue-100 to-indigo-200", desc: "Cookies & cream, blueberry swirl" },
+  { id: "6", name: "Salted Caramel", price: 5.0, category: "classic", color: "from-amber-100 to-orange-200", desc: "Sea salt, housemade caramel" },
+  { id: "7", name: "Pistachio Rose", price: 6.0, category: "floral", color: "from-green-100 to-rose-100", desc: "Sicilian pistachios, rosewater" },
+  { id: "8", name: "Black Sesame", price: 5.5, category: "unique", color: "from-gray-100 to-gray-200", desc: "Toasted black sesame, brown sugar" },
+  { id: "9", name: "Matcha Ceremony", price: 5.5, category: "unique", color: "from-green-100 to-lime-200", desc: "Ceremonial matcha, sweet cream" },
+  { id: "10", name: "Blueberry Cheesecake", price: 5.0, category: "fruity", color: "from-blue-100 to-purple-200", desc: "Wild blueberries, cream cheese" },
+  { id: "11", name: "Bourbon Pecan", price: 6.0, category: "unique", color: "from-orange-100 to-amber-200", desc: "Bourbon, candied pecans, maple" },
+  { id: "12", name: "Lychee Sorbet", price: 4.0, category: "fruity", color: "from-pink-100 to-rose-200", desc: "Fresh lychee, lime zest — dairy free" },
 ];
 
 const categories = ["all", "fruity", "classic", "floral", "unique"];
@@ -37,7 +38,7 @@ export default function Flavors() {
   const filtered = active === "all" ? flavors : flavors.filter((f) => f.category === active);
 
   const handleAdd = (flavor: typeof flavors[0]) => {
-    addItem({ id: flavor.id, name: flavor.name, price: flavor.price, emoji: flavor.emoji });
+    addItem({ id: flavor.id, name: flavor.name, price: flavor.price, emoji: "🍦" });
     setAdded(flavor.id);
     setTimeout(() => setAdded(null), 1200);
   };
@@ -97,7 +98,9 @@ export default function Flavors() {
               >
                 <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/25 group-hover:scale-150 transition-transform duration-500" />
                 <div className="relative z-10">
-                  <span className="scoop-emoji text-5xl block mb-4">{flavor.emoji}</span>
+                  <div className="mb-4">
+                    <FlavorIcon flavorId={flavor.id} className="w-16 h-16" />
+                  </div>
                   <h3 className="font-serif font-bold text-lg mb-1">{flavor.name}</h3>
                   <p className="text-sm text-foreground/60 mb-4">{flavor.desc}</p>
                   <div className="flex items-center justify-between">
@@ -111,7 +114,11 @@ export default function Flavors() {
                           : "bg-white/70 hover:bg-primary hover:text-white"
                       }`}
                     >
-                      {added === flavor.id ? "Added ✓" : <><ShoppingBag size={14} />Add</>}
+                      {added === flavor.id ? (
+                        <><Check size={13} />Added</>
+                      ) : (
+                        <><ShoppingBag size={14} />Add</>
+                      )}
                     </motion.button>
                   </div>
                 </div>

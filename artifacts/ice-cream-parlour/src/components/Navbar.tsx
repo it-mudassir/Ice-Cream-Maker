@@ -11,6 +11,33 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
+function IceCreamLogo({ className = "w-7 h-7" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 36 48" className={className} fill="none" aria-hidden="true">
+      <defs>
+        <radialGradient id="navScoop1" cx="50%" cy="35%" r="60%">
+          <stop offset="0%" stopColor="#fbb6ce" />
+          <stop offset="100%" stopColor="#f472b6" />
+        </radialGradient>
+        <radialGradient id="navScoop2" cx="50%" cy="35%" r="60%">
+          <stop offset="0%" stopColor="#a7f3d0" />
+          <stop offset="100%" stopColor="#34d399" />
+        </radialGradient>
+        <radialGradient id="navCone" cx="50%" cy="10%" r="80%">
+          <stop offset="0%" stopColor="#fcd9a0" />
+          <stop offset="100%" stopColor="#c27c1a" />
+        </radialGradient>
+      </defs>
+      <polygon points="18,47 8,24 28,24" fill="url(#navCone)" />
+      <line x1="18" y1="28" x2="18" y2="45" stroke="#b8690a" strokeWidth="0.8" opacity="0.4" />
+      <ellipse cx="18" cy="24" rx="10" ry="8" fill="url(#navScoop2)" />
+      <ellipse cx="18" cy="16" rx="9" ry="7.5" fill="url(#navScoop1)" />
+      <circle cx="16" cy="7" r="2.5" fill="#ef4444" />
+      <path d="M18 13.5 Q20 10 17 8" stroke="#6b7280" strokeWidth="1.2" strokeLinecap="round" fill="none" />
+    </svg>
+  );
+}
+
 export default function Navbar() {
   const { count, openCart } = useCart();
   const [scrolled, setScrolled] = useState(false);
@@ -34,7 +61,9 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           <a href="#" className="flex items-center gap-2 group">
-            <span className="text-2xl group-hover:scale-110 transition-transform duration-300 inline-block">🍦</span>
+            <span className="group-hover:scale-110 transition-transform duration-300 inline-block drop-shadow-md">
+              <IceCreamLogo className="w-8 h-8" />
+            </span>
             <span className="font-serif text-xl font-bold text-gradient">Scoops & Dreams</span>
           </a>
 

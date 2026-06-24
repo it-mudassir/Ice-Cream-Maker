@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Wheat, Milk, Leaf } from "lucide-react";
 
 const stats = [
   { value: "2012", label: "Founded" },
@@ -8,10 +9,42 @@ const stats = [
 ];
 
 const values = [
-  { emoji: "🌾", title: "Locally Sourced", desc: "Every ingredient is sourced from farms within 100 miles of our kitchen." },
-  { emoji: "🥛", title: "Small-Batch Made", desc: "We churn fresh every morning in small batches for peak creaminess." },
-  { emoji: "🌱", title: "Always Seasonal", desc: "Our menu rotates with the seasons, celebrating the best flavors nature offers." },
+  { icon: Wheat, title: "Locally Sourced", desc: "Every ingredient is sourced from farms within 100 miles of our kitchen.", color: "text-amber-600", bg: "bg-amber-100" },
+  { icon: Milk, title: "Small-Batch Made", desc: "We churn fresh every morning in small batches for peak creaminess.", color: "text-blue-500", bg: "bg-blue-100" },
+  { icon: Leaf, title: "Always Seasonal", desc: "Our menu rotates with the seasons, celebrating the best flavors nature offers.", color: "text-green-600", bg: "bg-green-100" },
 ];
+
+function ChefIllustration() {
+  return (
+    <svg viewBox="0 0 120 120" className="w-24 h-24 mx-auto mb-4" aria-hidden="true">
+      <defs>
+        <radialGradient id="chefFace" cx="50%" cy="45%" r="55%">
+          <stop offset="0%" stopColor="#fde8d8" />
+          <stop offset="100%" stopColor="#f9c89a" />
+        </radialGradient>
+        <radialGradient id="chefHat" cx="50%" cy="30%" r="60%">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="100%" stopColor="#e5e7eb" />
+        </radialGradient>
+      </defs>
+      <ellipse cx="60" cy="75" rx="28" ry="22" fill="#fbbf24" opacity="0.3" />
+      <rect x="38" y="55" width="44" height="30" rx="8" fill="#f9c89a" />
+      <ellipse cx="60" cy="68" rx="22" ry="20" fill="url(#chefFace)" />
+      <ellipse cx="52" cy="65" rx="3" ry="3.5" fill="#92400e" />
+      <ellipse cx="68" cy="65" rx="3" ry="3.5" fill="#92400e" />
+      <path d="M52 76 Q60 82 68 76" stroke="#d97706" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+      <ellipse cx="53" cy="63" rx="1.2" ry="1.5" fill="#1e1b4b" />
+      <ellipse cx="67" cy="63" rx="1.2" ry="1.5" fill="#1e1b4b" />
+      <rect x="44" y="42" width="32" height="18" rx="4" fill="url(#chefHat)" />
+      <ellipse cx="60" cy="42" rx="20" ry="8" fill="url(#chefHat)" />
+      <ellipse cx="60" cy="34" rx="10" ry="14" fill="url(#chefHat)" />
+      <ellipse cx="56" cy="32" rx="5" ry="3" fill="white" opacity="0.6" />
+      <rect x="34" y="84" width="52" height="22" rx="6" fill="#f43f5e" opacity="0.8" />
+      <rect x="50" y="84" width="20" height="22" fill="white" opacity="0.15" />
+      <ellipse cx="60" cy="50" rx="8" ry="4" fill="white" opacity="0.4" />
+    </svg>
+  );
+}
 
 export default function About() {
   return (
@@ -52,8 +85,8 @@ export default function About() {
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   className="flex items-start gap-4"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-2xl flex-shrink-0">
-                    {v.emoji}
+                  <div className={`w-12 h-12 rounded-2xl ${v.bg} flex items-center justify-center flex-shrink-0`}>
+                    <v.icon size={22} className={v.color} />
                   </div>
                   <div>
                     <p className="font-semibold mb-1">{v.title}</p>
@@ -72,7 +105,7 @@ export default function About() {
             className="space-y-6"
           >
             <div className="glass rounded-3xl p-10 text-center border border-white/60 mb-6">
-              <div className="text-9xl mb-4 block">👩‍🍳</div>
+              <ChefIllustration />
               <p className="font-serif italic text-xl text-foreground/70">
                 "Every scoop should make you close your eyes."
               </p>

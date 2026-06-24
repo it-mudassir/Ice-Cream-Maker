@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Check } from "lucide-react";
+import { Send, Check, Cake, Handshake, Package } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
+
+const contactItems: { Icon: LucideIcon; iconColor: string; iconBg: string; title: string; desc: string }[] = [
+  { Icon: Cake, iconColor: "text-pink-500", iconBg: "bg-pink-100", title: "Private Events", desc: "Birthday parties, weddings, corporate events" },
+  { Icon: Handshake, iconColor: "text-violet-500", iconBg: "bg-violet-100", title: "Wholesale", desc: "Restaurant & café partnerships welcome" },
+  { Icon: Package, iconColor: "text-amber-500", iconBg: "bg-amber-100", title: "Gifting", desc: "Custom gift boxes available for shipping" },
+];
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
@@ -37,14 +44,10 @@ export default function Contact() {
               For catering enquiries, birthday party packages, wholesale partnerships,
               or just to say hello — drop us a line. We respond within 24 hours.
             </p>
-            {[
-              { emoji: "🎂", title: "Private Events", desc: "Birthday parties, weddings, corporate events" },
-              { emoji: "🤝", title: "Wholesale", desc: "Restaurant & café partnerships welcome" },
-              { emoji: "📦", title: "Gifting", desc: "Custom gift boxes available for shipping" },
-            ].map((item) => (
+            {contactItems.map((item) => (
               <div key={item.title} className="flex items-start gap-4 mb-5">
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-2xl flex-shrink-0">
-                  {item.emoji}
+                <div className={`w-12 h-12 rounded-2xl ${item.iconBg} flex items-center justify-center flex-shrink-0 shadow-sm`}>
+                  <item.Icon size={22} className={item.iconColor} />
                 </div>
                 <div>
                   <p className="font-semibold">{item.title}</p>
@@ -70,7 +73,7 @@ export default function Contact() {
                   <Check className="text-green-600" size={36} />
                 </div>
                 <h3 className="font-serif text-2xl font-bold mb-3">Message Received!</h3>
-                <p className="text-muted-foreground">Thank you {form.name}! We'll be in touch within 24 hours. 🍦</p>
+                <p className="text-muted-foreground">Thank you {form.name}! We'll be in touch within 24 hours.</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="glass rounded-3xl p-8 sm:p-10 border border-white/60 space-y-5">

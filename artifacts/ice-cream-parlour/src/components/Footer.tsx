@@ -1,3 +1,5 @@
+import { Instagram, Twitter, Facebook, PartyPopper } from "lucide-react";
+
 const navLinks = [
   { label: "Flavors", href: "#flavors" },
   { label: "Specials", href: "#specials" },
@@ -7,10 +9,37 @@ const navLinks = [
 ];
 
 const socials = [
-  { emoji: "📸", label: "Instagram", href: "#" },
-  { emoji: "🐦", label: "Twitter", href: "#" },
-  { emoji: "📘", label: "Facebook", href: "#" },
+  { Icon: Instagram, label: "Instagram", href: "#" },
+  { Icon: Twitter, label: "Twitter", href: "#" },
+  { Icon: Facebook, label: "Facebook", href: "#" },
 ];
+
+function IceCreamLogoWhite() {
+  return (
+    <svg viewBox="0 0 36 48" className="w-9 h-9" fill="none" aria-hidden="true">
+      <defs>
+        <radialGradient id="footerScoop1" cx="50%" cy="35%" r="60%">
+          <stop offset="0%" stopColor="#fbb6ce" />
+          <stop offset="100%" stopColor="#f472b6" />
+        </radialGradient>
+        <radialGradient id="footerScoop2" cx="50%" cy="35%" r="60%">
+          <stop offset="0%" stopColor="#a7f3d0" />
+          <stop offset="100%" stopColor="#34d399" />
+        </radialGradient>
+        <radialGradient id="footerCone" cx="50%" cy="10%" r="80%">
+          <stop offset="0%" stopColor="#fcd9a0" />
+          <stop offset="100%" stopColor="#c27c1a" />
+        </radialGradient>
+      </defs>
+      <polygon points="18,47 8,24 28,24" fill="url(#footerCone)" />
+      <line x1="18" y1="28" x2="18" y2="45" stroke="#b8690a" strokeWidth="0.8" opacity="0.4" />
+      <ellipse cx="18" cy="24" rx="10" ry="8" fill="url(#footerScoop2)" />
+      <ellipse cx="18" cy="16" rx="9" ry="7.5" fill="url(#footerScoop1)" />
+      <circle cx="16" cy="7" r="2.5" fill="#ef4444" />
+      <path d="M18 13.5 Q20 10 17 8" stroke="#d1d5db" strokeWidth="1.2" strokeLinecap="round" fill="none" />
+    </svg>
+  );
+}
 
 export default function Footer() {
   return (
@@ -25,7 +54,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-3xl">🍦</span>
+              <IceCreamLogoWhite />
               <span className="font-serif text-xl font-bold text-white">Scoops & Dreams</span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed mb-6">
@@ -37,9 +66,9 @@ export default function Footer() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-lg transition-colors duration-200"
+                  className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-200"
                 >
-                  {s.emoji}
+                  <s.Icon size={18} className="text-white/70" />
                 </a>
               ))}
             </div>
@@ -66,7 +95,10 @@ export default function Footer() {
               <div className="flex justify-between"><span>Sunday</span><span>12pm – 9pm</span></div>
             </div>
             <div className="mt-6 p-4 rounded-2xl bg-white/5 border border-white/10">
-              <p className="text-white/80 text-sm font-semibold mb-1">🎉 Book a Private Event</p>
+              <p className="text-white/80 text-sm font-semibold mb-1 flex items-center gap-2">
+                <PartyPopper size={15} className="text-pink-400" />
+                Book a Private Event
+              </p>
               <p className="text-white/40 text-xs">hello@scoopsanddreams.com</p>
             </div>
           </div>

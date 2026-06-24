@@ -1,14 +1,28 @@
 import { motion } from "framer-motion";
-import { MapPin, Clock, Phone } from "lucide-react";
+import { MapPin, Clock, Phone, Home, Building2, Waves } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
 
-const locations = [
+const locations: {
+  id: number;
+  name: string;
+  address: string;
+  hours: string;
+  phone: string;
+  Icon: LucideIcon;
+  iconColor: string;
+  iconBg: string;
+  tag: string;
+  color: string;
+}[] = [
   {
     id: 1,
     name: "The Original",
     address: "42 Blossom Lane, Maplewood",
     hours: "Mon–Sun: 11am – 10pm",
     phone: "(555) 123-4567",
-    emoji: "🏡",
+    Icon: Home,
+    iconColor: "text-rose-500",
+    iconBg: "bg-rose-100",
     tag: "Flagship",
     color: "from-pink-100 to-rose-100",
   },
@@ -18,7 +32,9 @@ const locations = [
     address: "128 Fifth Avenue, Downtown",
     hours: "Mon–Sat: 12pm – 11pm · Sun: 12pm – 9pm",
     phone: "(555) 234-5678",
-    emoji: "🏙️",
+    Icon: Building2,
+    iconColor: "text-indigo-500",
+    iconBg: "bg-indigo-100",
     tag: "Newest",
     color: "from-purple-100 to-indigo-100",
   },
@@ -28,7 +44,9 @@ const locations = [
     address: "7 Harbor View Rd, Bayside",
     hours: "Seasonal · May–Sep: 10am – Midnight",
     phone: "(555) 345-6789",
-    emoji: "🌊",
+    Icon: Waves,
+    iconColor: "text-teal-500",
+    iconBg: "bg-teal-100",
     tag: "Seasonal",
     color: "from-sky-100 to-teal-100",
   },
@@ -65,7 +83,9 @@ export default function Locations() {
               <span className="absolute top-4 right-4 bg-white/70 text-xs font-bold text-primary px-3 py-1 rounded-full">
                 {loc.tag}
               </span>
-              <div className="text-5xl mb-5">{loc.emoji}</div>
+              <div className={`w-14 h-14 rounded-2xl ${loc.iconBg} flex items-center justify-center mb-5 shadow-md`}>
+                <loc.Icon size={26} className={loc.iconColor} />
+              </div>
               <h3 className="font-serif text-xl font-bold mb-4">{loc.name}</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-start gap-3 text-foreground/70">

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Sparkles, IceCream } from "lucide-react";
 
 const floatVariants = {
   animate: {
@@ -15,6 +16,13 @@ const stars = Array.from({ length: 18 }, (_, i) => ({
   delay: (i * 0.4) % 3,
   duration: (i % 3) + 3,
 }));
+
+const avatarColors = [
+  { bg: "#fbb6ce", initials: "A" },
+  { bg: "#a7f3d0", initials: "J" },
+  { bg: "#fde68a", initials: "M" },
+  { bg: "#c4b5fd", initials: "S" },
+];
 
 export default function Hero() {
   return (
@@ -63,7 +71,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm border border-pink-200 rounded-full px-4 py-2 text-sm font-medium text-primary mb-6"
           >
-            <span>✨</span> Small-batch, handcrafted daily
+            <Sparkles size={14} className="text-primary" />
+            Small-batch, handcrafted daily
           </motion.div>
 
           <motion.h1
@@ -97,13 +106,15 @@ export default function Hero() {
               href="#flavors"
               className="inline-flex items-center gap-2 bg-primary text-white font-semibold px-8 py-4 rounded-2xl shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300"
             >
-              Explore Flavors 🍨
+              <IceCream size={18} />
+              Explore Flavors
             </a>
             <a
               href="#specials"
               className="inline-flex items-center gap-2 glass border border-white/60 font-semibold px-8 py-4 rounded-2xl hover:-translate-y-0.5 transition-all duration-300"
             >
-              Today's Specials ✨
+              <Sparkles size={16} className="text-primary" />
+              Today's Specials
             </a>
           </motion.div>
 
@@ -114,17 +125,18 @@ export default function Hero() {
             className="mt-10 flex items-center gap-5"
           >
             <div className="flex -space-x-3">
-              {["🧑‍🦰", "👩", "🧔", "👧"].map((e, i) => (
+              {avatarColors.map((av, i) => (
                 <div
                   key={i}
-                  className="w-10 h-10 rounded-full bg-white border-2 border-white shadow-md flex items-center justify-center text-base"
+                  className="w-10 h-10 rounded-full border-2 border-white shadow-md flex items-center justify-center text-sm font-bold text-white"
+                  style={{ backgroundColor: av.bg, color: "#6b4e71" }}
                 >
-                  {e}
+                  {av.initials}
                 </div>
               ))}
             </div>
             <div>
-              <div className="flex items-center gap-1 text-yellow-500 text-sm">
+              <div className="flex items-center gap-0.5 text-yellow-500 text-sm">
                 {"★★★★★"}
               </div>
               <p className="text-sm text-foreground/60">
